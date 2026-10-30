@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+
 import 'login_screen.dart';
+import '../widgets/app_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,6 +14,10 @@ class HomeScreen extends StatelessWidget {
         builder: (context) => const LoginScreen(),
       ),
     );
+  }
+
+  void _openReport(BuildContext context) {
+    Navigator.pushNamed(context, '/report');
   }
 
   @override
@@ -58,27 +64,25 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
 
-                  SizedBox(
+                  // Reusable button for Login navigation.
+                  AppButton(
+                    label: 'Get Started',
                     width: 220,
                     height: 52,
-                    child: ElevatedButton(
-                      onPressed: () => _openLogin(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF2563EB),
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: const Text(
-                        'Get Started',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                    onPressed: () => _openLogin(context),
                   ),
+
+                  const SizedBox(height: 16),
+
+                  // Reusable button for Report Form navigation.
+                  AppButton(
+                    label: 'Report an Issue',
+                    icon: Icons.report_problem_outlined,
+                    width: 220,
+                    height: 52,
+                    onPressed: () => _openReport(context),
+                  ),
+
                   const SizedBox(height: 16),
 
                   TextButton(
